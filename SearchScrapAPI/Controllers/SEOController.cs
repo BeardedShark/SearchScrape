@@ -44,7 +44,7 @@ namespace SearchScrapAPI.Controllers
                     var response = new SEOResponse();
 
                     var results = await _SEOSearch.SearchScrape(req.URL, req.Phrase);
-                    results.AddRange(await _SEOHistoryRepo.GetHistoryForPhrase(req.URL, req.Phrase));
+                    results.AddRange(await _SEOHistoryRepo.GetHistoryForPhrase(req.Phrase, req.URL));
                     results = results.OrderByDescending(x => x.Scraped).ToList();
 
                     response.Success = true;
